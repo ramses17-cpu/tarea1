@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="stylo.css">
+  <title>Formulario de Videojuegos</title>
+
+</head>
+<body>
+    <h1>Encuesta de Programacion</h1>
+    <br>
+  <div id="app">
+    <h2>¿Te gustan los videojuegos?</h2>
+    <button @click="handleAnswer('yes')">Sí</button>
+    <button @click="handleAnswer('no')">No</button>
+
+    <p v-if="likeGames === 'no'">Gracias por participar. ¡Échale ganas, mijo!</p>
+
+    <div v-if="likeGames === 'yes'">
+      <h3>¿Cuanto timepo llevas jugando?</h3>
+      <input type="number" v-model="yearsPlaying" placeholder="Años jugando" />
+
+      <div v-if="yearsPlaying > 2">
+        <h3>¿Qué consolas has tenido?</h3>
+        <input type="text" v-model="consoles" placeholder="Escribe tus consolas" />
+      </div>
+
+      <h3>¿Qué juegos has jugado?</h3>
+      <input type="text" v-model="gamesPlayed" placeholder="Escribe tus juegos" />
+      <button @click="registerGames">Registrar Respuestas</button>
+
+      <ul>
+        <li v-for="(response, index) in responses" :key="index">
+          {{ response }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
